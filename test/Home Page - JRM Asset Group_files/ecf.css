@@ -1,0 +1,35 @@
+@font-face {
+	font-family: 'Avenir';
+	font-weight: 800;
+	font-style: normal;
+	src: url(//quercuscf.co.uk/wp-content/uploads/elegant-custom-fonts/fonts/AvenirBold.woff);
+}
+
+@font-face {
+	font-family: 'Avenir';
+	font-weight: 600;
+	font-style: normal;
+	src: url(//quercuscf.co.uk/wp-content/uploads/elegant-custom-fonts/fonts/AvenirSemiBold.woff);
+}
+
+@font-face {
+	font-family: 'Avenir';
+	font-weight: 500;
+	font-style: normal;
+	src: url(//quercuscf.co.uk/wp-content/uploads/elegant-custom-fonts/fonts/AvenirMedium.woff);
+}
+
+@font-face {
+	font-family: 'Avenir';
+	font-weight: 400;
+	font-style: normal;
+	src: url(//quercuscf.co.uk/wp-content/uploads/elegant-custom-fonts/fonts/Avenir-Regular.woff);
+}
+
+@font-face {
+	font-family: 'Avenir';
+	font-weight: 300;
+	font-style: normal;
+	src: url(//quercuscf.co.uk/wp-content/uploads/elegant-custom-fonts/fonts/AvenirLight.woff);
+}
+

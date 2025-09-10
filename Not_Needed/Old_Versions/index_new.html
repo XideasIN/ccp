@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Enquiry - Coral Capital Panama</title>
+<link rel="canonical" href="index.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enquiry - Coral Capital Panama">
+<meta property="og:site_name" content="Coral Capital Panama">
+<link rel="icon" href="../wp-content/logo/favicon.ico" sizes="32x32">
+<link rel="icon" href="../wp-content/logo/favicon.svg" sizes="any">
+<link rel="apple-touch-icon" href="../wp-content/logo/favicon.svg">
+<meta name="msapplication-TileImage" content="../wp-content/logo/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Avenir:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Avenir', 'Poppins', 'Nunito Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.page-header {
+    background: linear-gradient(135deg, #0A3140 0%, #1a4a5c 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+.page-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+.page-content {
+    padding: 60px 0;
+}
+.intro-text {
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    font-size: 1.1rem;
+    color: #333;
+    text-align: justify;
+}
+.form-selector {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.form-tabs {
+    display: inline-flex;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.form-tab {
+    padding: 15px 30px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+.form-tab.active {
+    background: #0A3140;
+    color: white;
+    border-bottom-color: #A99168;
+}
+.form-tab:hover:not(.active) {
+    background: #f8f9fa;
+    color: #333;
+}
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+.form-section {
+    display: none;
+}
+.form-section.active {
+    display: block;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+.required::after {
+    content: "●";
+    color: #A99168;
+    margin-left: 5px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #A99168;
+    box-shadow: 0 0 0 2px rgba(169, 145, 104, 0.2);
+}
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.certification {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 4px solid #A99168;
+}
+.certification h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+.certification p {
+    margin: 10px 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+.certification-checkbox {
+    margin-top: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.certification-checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+.certification-checkbox label {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+}
+.submit-btn {
+    background: #A99168;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+.submit-btn:hover {
+    background: #8a7a5a;
+}
+.submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    .form-tabs {
+        flex-direction: column;
+    }
+    .form-tab {
+        border-bottom: 1px solid #eee;
+        border-right: none;
+    }
+    .form-tab:last-child {
+        border-bottom: none;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="container">
+            <h1>Financial Services Enquiry</h1>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="intro-text">
+                <p>Coral Capital is dedicated to offering a comprehensive suite of financial support options tailored to meet the diverse needs of entrepreneurs and businesses at various stages of development. We provide two primary types of financial assistance designed to empower innovative ventures and foster growth. The first option is equity investment where we actively seek to partner with new and promising businesses in exchange for a stake in their operations. This collaborative approach allows us not only to invest capital but also to contribute our expertise and resources ensuring that our partners have the necessary support to thrive in their respective markets.</p>
+                
+                <p>The second avenue of support we offer consists of direct business loans. These loans are structured to be repaid over clearly defined terms and we pride ourselves on providing competitive interest rates that make the financing process accessible and manageable for our clients. Our goal with these loans is to facilitate immediate funding needs while fostering long-term financial health and sustainability for the businesses we support.</p>
+                
+                <p>If you are currently seeking funding to propel your business forward and would like to take the next steps in this process we invite you to fill out the form provided below. By doing so you will enable us to better understand your unique requirements and aspirations allowing us to assist you in navigating the path toward securing the financial resources you need to achieve your goals. We look forward to the opportunity to collaborate with you and support your journey to success.</p>
+            </div>
+
+            <div class="form-selector">
+                <div class="form-tabs">
+                    <button class="form-tab active" onclick="showForm('equity')">Equity Form</button>
+                    <button class="form-tab" onclick="showForm('loan')">Loan Form</button>
+                </div>
+            </div>
+
+            <!-- Equity Form -->
+            <div class="form-container">
+                <form id="equity-form" class="form-section active" action="../contact-form-handler.php" method="POST">
+                    <input type="hidden" name="form_type" value="equity">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_date" class="required">Date</label>
+                            <input type="date" id="equity_date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_legal_name" class="required">Legal Name of Your Business</label>
+                            <input type="text" id="equity_legal_name" name="legal_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_date_founded" class="required">Date Founded</label>
+                            <input type="date" id="equity_date_founded" name="date_founded" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_employees" class="required">Number of Employees</label>
+                            <input type="number" id="equity_employees" name="employees" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equity_business_structure" class="required">Business Structure</label>
+                        <select id="equity_business_structure" name="business_structure" required>
+                            <option value="">Select Business Structure</option>
+                            <option value="sole_proprietorship">Sole Proprietorship</option>
+                            <option value="individual">Individual</option>
+                            <option value="corporation">Corporation</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="other">Other (Please describe)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_annual_revenue" class="required">Approximate Annual Revenue for the Last 12 Months ($)</label>
+                            <input type="number" id="equity_annual_revenue" name="annual_revenue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_financial_year_end" class="required">Financial Year End</label>
+                            <input type="date" id="equity_financial_year_end" name="financial_year_end" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equity_key_contact" class="required">Key Contact Person</label>
+                        <input type="text" id="equity_key_contact" name="key_contact" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_direct_email" class="required">Direct Email</label>
+                            <input type="email" id="equity_direct_email" name="direct_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_website">Website</label>
+                            <input type="url" id="equity_website" name="website">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_phone" class="required">Phone</label>
+                            <input type="tel" id="equity_phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_alternate_phone">Alternate Number (Cell phone)</label>
+                            <input type="tel" id="equity_alternate_phone" name="alternate_phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equity_address" class="required">Address</label>
+                        <textarea id="equity_address" name="address" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="equity_city" class="required">City</label>
+                            <input type="text" id="equity_city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="equity_country" class="required">Country</label>
+                            <input type="text" id="equity_country" name="country" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equity_investment_amount" class="required">Investment Amount Required ($)</label>
+                        <input type="number" id="equity_investment_amount" name="investment_amount" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equity_purpose" class="required">Purpose of Investment Funds</label>
+                        <textarea id="equity_purpose" name="purpose" rows="6" required></textarea>
+                    </div>
+
+                    <div class="certification">
+                        <h3>I CERTIFY, TO THE BEST OF MY KNOWLEDGE, THAT:</h3>
+                        <p>1. The information provided above is true and accurate.</p>
+                        <p>2. This business does not or will not support or engage in any terrorist activity, arms dealing or any nefarious activity which would result in criminal prosecution of any kind.</p>
+                        <p>3. Funds will not be distributed to or used to benefit any organization or individual supporting or engaged in terrorism, or used for any other unlawful purpose whatsoever.</p>
+                        <p>4. This business has not been cited for non-compliance with any environmental regulations or laws.</p>
+                        <p>5. This business has not filed for bankruptcy or defaulted on any debts.</p>
+                        <p>6. This business has not been named as a defendant in any claim or lawsuit.</p>
+                        
+                        <div class="certification-checkbox">
+                            <input type="checkbox" id="equity_certification" name="certification" required>
+                            <label for="equity_certification">I certify that the above information is true and accurate to the best of my knowledge.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Equity Application</button>
+                </form>
+
+                <!-- Loan Form -->
+                <form id="loan-form" class="form-section" action="../contact-form-handler.php" method="POST">
+                    <input type="hidden" name="form_type" value="loan">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_date" class="required">Date of Application</label>
+                            <input type="date" id="loan_date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_legal_name" class="required">Legal Name of Business Applying for Loan</label>
+                            <input type="text" id="loan_legal_name" name="legal_name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_business_address" class="required">Business Address</label>
+                            <textarea id="loan_business_address" name="business_address" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_country" class="required">Country</label>
+                            <input type="text" id="loan_country" name="country" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_date_founded" class="required">Date Founded</label>
+                            <input type="date" id="loan_date_founded" name="date_founded" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_employees" class="required">Number of Employees</label>
+                            <input type="number" id="loan_employees" name="employees" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan_business_structure" class="required">Business Structure</label>
+                        <select id="loan_business_structure" name="business_structure" required>
+                            <option value="">Select Business Structure</option>
+                            <option value="sole_proprietorship">Sole Proprietorship</option>
+                            <option value="individual">Individual</option>
+                            <option value="corporation">Corporation</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="other">Other (Please describe)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_annual_revenue" class="required">Approximate Annual Revenue for the Last 12 Months ($)</label>
+                            <input type="number" id="loan_annual_revenue" name="annual_revenue" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_financial_year_end" class="required">Financial Year End</label>
+                            <input type="date" id="loan_financial_year_end" name="financial_year_end" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan_key_contact" class="required">Key Contact Person</label>
+                        <input type="text" id="loan_key_contact" name="key_contact" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_direct_email" class="required">Direct Email</label>
+                            <input type="email" id="loan_direct_email" name="direct_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_website">Website</label>
+                            <input type="url" id="loan_website" name="website">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_phone" class="required">Phone</label>
+                            <input type="tel" id="loan_phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_alternate_phone">Alternate Number (Cell Phone)</label>
+                            <input type="tel" id="loan_alternate_phone" name="alternate_phone">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan_address" class="required">Address</label>
+                        <textarea id="loan_address" name="address" required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="loan_city" class="required">City</label>
+                            <input type="text" id="loan_city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loan_country_2" class="required">Country</label>
+                            <input type="text" id="loan_country_2" name="country_2" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan_amount" class="required">Loan Amount Requested ($)</label>
+                        <input type="number" id="loan_amount" name="loan_amount" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loan_purpose" class="required">Purpose of Loan Funds</label>
+                        <textarea id="loan_purpose" name="purpose" rows="6" required></textarea>
+                    </div>
+
+                    <div class="certification">
+                        <h3>I CERTIFY, TO THE BEST OF MY KNOWLEDGE, THAT:</h3>
+                        <p>1. The information provided above is true and accurate.</p>
+                        <p>2. This business does not support or engage in any terrorist activity, arms dealing or any nefarious activity which would result in criminal prosecution of any kind.</p>
+                        <p>3. If a loan is approved the proceeds of the loan will not be distributed to or used to benefit any organization or individual supporting or engaged in terrorism, or used for any other unlawful purpose.</p>
+                        <p>4. This business has not been cited for non-compliance with any environmental regulations.</p>
+                        <p>5. This business has not filed for bankruptcy or defaulted on any debts.</p>
+                        <p>6. This business has not been named as a defendant in any claim or lawsuit.</p>
+                        
+                        <div class="certification-checkbox">
+                            <input type="checkbox" id="loan_certification" name="certification" required>
+                            <label for="loan_certification">I certify that the above information is true and accurate to the best of my knowledge.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Loan Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            // Hide all forms
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.form-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected form
+            document.getElementById(formType + '-form').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Set today's date as default for date fields
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.querySelectorAll('input[type="date"]').forEach(input => {
+                if (!input.value) {
+                    input.value = today;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Review - Coral Capital Panama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .review-header {
+            background-color: #17374b;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .review-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .footer-preview {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .info-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #17374b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="review-header">
+        <h1>🔍 Footer Review Page</h1>
+        <p>This page displays the centralized footer content loaded by footer-loader.js</p>
+    </div>
+
+    <div class="review-content">
+        <h2>Centralized Footer System Confirmation</h2>
+        <div class="info-box">
+            <h3>✅ Confirmed: This IS a centralized footer system</h3>
+            <ul>
+                <li><strong>Footer Loader:</strong> <code>js/footer-loader.js</code></li>
+                <li><strong>Footer Content:</strong> <code>footer.html</code></li>
+                <li><strong>Integration Method:</strong> Loads into elements with <code>id="footer-container"</code></li>
+                <li><strong>Path Detection:</strong> Automatically adjusts paths for subdirectories</li>
+                <li><strong>Fallback:</strong> Provides basic footer if loading fails</li>
+            </ul>
+        </div>
+
+        <h3>How it works:</h3>
+        <ol>
+            <li>Pages include <code>&lt;div id="footer-container"&gt;&lt;/div&gt;</code></li>
+            <li>Pages load <code>js/footer-loader.js</code></li>
+            <li>Script fetches <code>footer.html</code> and injects it into the container</li>
+            <li>All pages share the same footer content automatically</li>
+        </ol>
+    </div>
+
+    <div class="review-content">
+        <h2>Live Footer Preview</h2>
+        <p>Below is the actual footer content as it appears on the website:</p>
+        
+        <div class="footer-preview">
+            <!-- Footer will be loaded here -->
+            <div id="footer-container"></div>
+        </div>
+    </div>
+
+    <div class="review-content">
+        <h2>Footer Integration Status</h2>
+        <div class="info-box">
+            <h4>Pages using centralized footer:</h4>
+            <ul>
+                <li>✅ index-2.html (reference implementation)</li>
+                <li>✅ team/index.html</li>
+                <li>✅ sectors/index.html</li>
+                <li>✅ international/index.html</li>
+                <li>✅ privacy-policy/index.html</li>
+                <li>✅ terms-and-conditions/index.html</li>
+                <li>✅ enquiry/index.html</li>
+                <li>⚠️ index.html (main page) - Footer loaded via footer-loader.js</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Load the centralized footer -->
+    <script src="js/footer-loader.js"></script>
+    
+    <!-- Load contact modal for footer triggers -->
+    <script src="js/contact-modal-enhanced.js"></script>
+
+    <script>
+        // Add some debugging info
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const footerContainer = document.getElementById('footer-container');
+                if (footerContainer && footerContainer.innerHTML.trim()) {
+                    console.log('✅ Footer loaded successfully in review page');
+                } else {
+                    console.log('❌ Footer failed to load in review page');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

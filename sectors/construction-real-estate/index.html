@@ -46,6 +46,12 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/www.coralcapitalpanama.com","hash_tracking":"false","v4_id":"G-LR7YSMLRFG"};/* ]]> */
 </script>
 <script type="text/javascript" src="../../wp-includes/js/jquery/jquery.minf43b.js?ver=3.7.1" id="jquery-core-js"></script>
+<script>
+// Fallback for jQuery if it fails to load
+if (typeof jQuery === 'undefined') {
+    document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>');
+}
+</script>
 <script type="text/javascript" src="../../wp-content/plugins/responsive-vector-maps/js/regions-data/jquery-jvectormap-2.0.3.minb95e.js?ver=2.0.3" id="rvm_jquery-jvectormap-js-js"></script>
 <script type="text/javascript" src="../../isotope-layout%403.0.6/dist/isotope.pkgd.min380f.js?ver=6.5.4" id="isotop-js-js"></script>
 <link rel="https://api.w.org/" href="../../wp-json/index.html"><link rel="alternate" type="application/json" href="../../wp-json/wp/v2/pages/174.html"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.html?rsd">
@@ -819,9 +825,15 @@ jQuery(window).scroll(function($){
     var scroll = win.scrollTop();
     if (scroll < headerinnerHeight) {
         header.removeClass("sticky");
+        // Show white logo when not sticky
+        jQuery('.logo-area:not(.sticky-logo)').show();
+        jQuery('.logo-area.sticky-logo').hide();
         
     } else {
         header.addClass("sticky");
+        // Show blue logo when sticky
+        jQuery('.logo-area:not(.sticky-logo)').hide();
+        jQuery('.logo-area.sticky-logo').show();
     }
 
 });
@@ -866,9 +878,36 @@ jQuery(document).ready(function($){
 .menu-sticky.sticky .menu-bar .logo-area {
     display: none;
 }
-.menu-sticky.sticky .menu-bar .logo-area.sticky-logo {
-    display: block;
-}
+        .menu-sticky.sticky .menu-bar .logo-area.sticky-logo {
+            display: block !important;
+            position: absolute !important;
+            top: 50% !important;
+            left: 20px !important;
+            transform: translateY(-50%) !important;
+            z-index: 10 !important;
+        }
+        .menu-sticky.sticky .menu-bar .logo-area.sticky-logo img {
+            display: inline-block !important;
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+            vertical-align: middle !important;
+            height: 60px !important;
+            width: auto !important;
+        }
+        .menu-sticky.sticky .logo-area.sticky-logo {
+            display: block !important;
+            position: relative !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+        .menu-sticky.sticky .menu-bar {
+            background: #FFF !important;
+            min-height: 80px !important;
+            padding-top: 20px !important;
+            padding-bottom: 20px !important;
+            position: relative !important;
+        }
 .menu-sticky.sticky .menu-bar .menu-item:hover{
     color: #0a3140 !important;
 }
@@ -1139,6 +1178,9 @@ div#cky-tab-content {
     display: none !important;
 }</style>
 <!-- /WP_FOOTER --> 
+
+<!-- Centralized Contact Modal Script -->
+<script src="../../js/contact-modal-enhanced.js"></script>
 </body>
 
 

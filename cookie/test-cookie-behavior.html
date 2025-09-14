@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Behavior Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0A3140;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0d4a5c;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .status.valid {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.expired {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cookie Consent Behavior Test</h1>
+    
+    <div class="info">
+        <h3>Expected Behavior:</h3>
+        <ul>
+            <li><strong>First Visit:</strong> Cookie popup should appear</li>
+            <li><strong>Accept All / Deny:</strong> Popup hidden for 25 days</li>
+            <li><strong>X (Dismiss):</strong> Popup hidden for 5 days</li>
+            <li><strong>Only One Popup:</strong> No duplicate popups should appear</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Current Cookie Status</h2>
+        <div id="cookie-status"></div>
+        <button onclick="checkCookieStatus()">Check Status</button>
+        <button onclick="clearCookieConsent()">Clear Cookie Consent</button>
+        <button onclick="reloadPage()">Reload Page</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Simulate Time Travel</h2>
+        <p>Test expiry behavior by manipulating timestamps:</p>
+        <button onclick="simulateTimeTravel(6)">Simulate 6 Days Later (Dismiss should expire)</button>
+        <button onclick="simulateTimeTravel(26)">Simulate 26 Days Later (Accept/Deny should expire)</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Cookie Actions</h2>
+        <p>Manually set cookie consent to test different scenarios:</p>
+        <button onclick="setCookieConsent('accepted')">Set as Accepted</button>
+        <button onclick="setCookieConsent('denied')">Set as Denied</button>
+        <button onclick="setCookieConsent('dismissed')">Set as Dismissed</button>
+    </div>
+
+    <!-- Include the cookie consent system -->
+    <script src="../js/cookie-consent.js"></script>
+    
+    <script>
+        function checkCookieStatus() {
+            const statusDiv = document.getElementById('cookie-status');
+            const consentData = localStorage.getItem('coral_capital_cookie_consent');
+            
+            if (!consentData) {
+                statusDiv.innerHTML = '<div class="status expired">No cookie consent found - popup should appear</div>';
+                return;
+            }
+            
+            try {
+                const { choice, timestamp } = JSON.parse(consentData);
+                const now = Date.now();
+                const daysSince = Math.floor((now - timestamp) / (24 * 60 * 60 * 1000));
+                
+                let expiryDays;
+                if (choice === 'accepted' || choice === 'denied') {
+                    expiryDays = 25;
+                } else if (choice === 'dismissed') {
+                    expiryDays = 5;
+                } else {
+                    statusDiv.innerHTML = '<div class="status expired">Invalid choice - popup should appear</div>';
+                    return;
+                }
+                
+                const isValid = daysSince < expiryDays;
+                const remainingDays = expiryDays - daysSince;
+                
+                statusDiv.innerHTML = `
+                    <div class="status ${isValid ? 'valid' : 'expired'}">
+                        Choice: ${choice}<br>
+                        Days since consent: ${daysSince}<br>
+                        ${isValid ? `Valid for ${remainingDays} more days` : 'Expired - popup should appear'}
+                    </div>
+                `;
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="status expired">Error reading consent - popup should appear</div>';
+            }
+        }
+        
+        function clearCookieConsent() {
+            localStorage.removeItem('coral_capital_cookie_consent');
+            checkCookieStatus();
+            alert('Cookie consent cleared. Reload the page to see the popup.');
+        }
+        
+        function reloadPage() {
+            window.location.reload();
+        }
+        
+        function simulateTimeTravel(days) {
+            const consentData = localStorage.getItem('coral_capital_cookie_consent');
+            if (!consentData) {
+                alert('No cookie consent found to modify');
+                return;
+            }
+            
+            try {
+                const data = JSON.parse(consentData);
+                const newTimestamp = Date.now() - (days * 24 * 60 * 60 * 1000);
+                data.timestamp = newTimestamp;
+                localStorage.setItem('coral_capital_cookie_consent', JSON.stringify(data));
+                checkCookieStatus();
+                alert(`Simulated ${days} days in the past. Reload to test expiry behavior.`);
+            } catch (error) {
+                alert('Error modifying cookie consent');
+            }
+        }
+        
+        function setCookieConsent(choice) {
+            const consentData = {
+                choice: choice,
+                timestamp: Date.now(),
+                version: '2.0'
+            };
+            localStorage.setItem('coral_capital_cookie_consent', JSON.stringify(consentData));
+            checkCookieStatus();
+            alert(`Cookie consent set to: ${choice}`);
+        }
+        
+        // Check status on page load
+        window.addEventListener('load', checkCookieStatus);
+        
+        // Listen for cookie consent changes
+        window.addEventListener('cookieConsentChanged', function(event) {
+            console.log('Cookie consent changed:', event.detail);
+            setTimeout(checkCookieStatus, 100);
+        });
+    </script>
+</body>
+</html>

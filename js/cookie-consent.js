@@ -6,7 +6,8 @@
 class CookieConsentManager {
     constructor() {
         this.COOKIE_NAME = 'coral_capital_cookie_consent';
-        this.EXPIRY_DAYS = 10;
+        this.EXPIRY_DAYS_ACCEPT_DENY = 25; // 25 days for Accept All or Deny
+        this.EXPIRY_DAYS_DISMISS = 5; // 5 days for X (dismiss)
         this.banner = null;
         this.isVisible = false;
         
@@ -32,9 +33,20 @@ class CookieConsentManager {
 
             const { choice, timestamp } = JSON.parse(consentData);
             const now = Date.now();
-            const expiryTime = timestamp + (this.EXPIRY_DAYS * 24 * 60 * 60 * 1000);
+            
+            // Use different expiry times based on user choice
+            let expiryDays;
+            if (choice === 'accepted' || choice === 'denied') {
+                expiryDays = this.EXPIRY_DAYS_ACCEPT_DENY; // 25 days
+            } else if (choice === 'dismissed') {
+                expiryDays = this.EXPIRY_DAYS_DISMISS; // 5 days
+            } else {
+                return false; // Invalid choice
+            }
+            
+            const expiryTime = timestamp + (expiryDays * 24 * 60 * 60 * 1000);
 
-            return now < expiryTime && (choice === 'accepted' || choice === 'denied' || choice === 'dismissed');
+            return now < expiryTime;
         } catch (error) {
             console.warn('Error checking cookie consent:', error);
             return false;
@@ -44,11 +56,19 @@ class CookieConsentManager {
     createBanner() {
         // Determine the correct path to the cookie image based on current page location
         const getCookieImagePath = () => {
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/cookie/')) {
+                return '../wp-content/cookie/cookie.PNG';
+            }
             return 'wp-content/cookie/cookie.PNG';
         };
 
         // Determine the correct path to the privacy policy based on current page location
         const getPrivacyPolicyPath = () => {
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('/cookie/')) {
+                return '../privacy-policy/index.html';
+            }
             return 'privacy-policy/index.html';
         };
 
@@ -262,7 +282,7 @@ const cookieStyles = `
 .coral-cookie-header h3 {
     margin: 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: normal;
     color: #0A3140;
     font-family: 'Avenir', sans-serif;
     text-transform: uppercase;

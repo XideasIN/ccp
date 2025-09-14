@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Header Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { height: 2000px; margin: 0; padding: 0; }
+        .menu-sticky { position: relative; background: #333; color: white; padding: 20px; }
+        .menu-sticky.sticky { position: fixed; top: 0; width: 100%; background: white; color: black; }
+        .logo-area { display: inline-block; margin: 10px; }
+        .logo-area img { width: 100px; height: 50px; }
+        .logo-area.sticky-logo { display: none; }
+        .menu-sticky.sticky .logo-area.sticky-logo { display: block; }
+        .menu-sticky.sticky .logo-area:not(.sticky-logo) { display: none; }
+    </style>
+</head>
+<body>
+    <div class="menu-sticky">
+        <div class="logo-area">
+            <img src="wp-content/logo/QUERCUS_10thAnniversary-Logo_03.png" alt="White Logo">
+        </div>
+        <div class="logo-area sticky-logo">
+            <img src="wp-content/logo/Asset-2.png" alt="Blue Logo">
+        </div>
+    </div>
+    
+    <div style="height: 100px; background: #f0f0f0; padding: 20px;">
+        <h1>Scroll down to test header functionality</h1>
+        <p>You should see the logo change from white to blue when scrolling.</p>
+    </div>
+
+    <script>
+        var header = jQuery('.menu-sticky');
+        var win = jQuery(window);
+        var headerinnerHeight = 100;
+
+        jQuery(window).scroll(function($){
+            var scroll = win.scrollTop();
+            console.log('Scroll position:', scroll, 'Header height:', headerinnerHeight);
+            
+            if (scroll < headerinnerHeight) {
+                header.removeClass("sticky");
+                jQuery('.logo-area:not(.sticky-logo)').show();
+                jQuery('.logo-area.sticky-logo').hide();
+                console.log('Not sticky - showing white logo');
+            } else {
+                header.addClass("sticky");
+                jQuery('.logo-area:not(.sticky-logo)').hide();
+                jQuery('.logo-area.sticky-logo').show();
+                console.log('Sticky - showing blue logo');
+            }
+        });
+    </script>
+</body>
+</html>
